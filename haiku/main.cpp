@@ -43,7 +43,6 @@ public:
 			{
 				BAlert *alert = new BAlert("Alert", "Hello World!", "Ok");
 				alert->Go();
-				delete alert;
 				break;
 			}
 
