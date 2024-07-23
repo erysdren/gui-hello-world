@@ -33,15 +33,14 @@ LRESULT CALLBACK HelloWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int PASCAL WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	WNDCLASSEX wc;
+	WNDCLASS wc;
 	HWND hwnd;
 	HWND hwndButton;
 	MSG msg;
 
 	/* register window class */
-	wc.cbSize = sizeof(WNDCLASSEX);
 	wc.style = 0;
 	wc.lpfnWndProc = HelloWndProc;
 	wc.cbClsExtra = 0;
@@ -52,17 +51,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	wc.hbrBackground = (HBRUSH)(COLOR_WINDOW+1);
 	wc.lpszMenuName = NULL;
 	wc.lpszClassName = g_szClassName;
-	wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 
-	if (!RegisterClassEx(&wc))
+	if (!RegisterClass(&wc))
 	{
 		MessageBox(NULL, "Window Registration Failed!", "Error!", MB_ICONEXCLAMATION | MB_OK);
 		return 0;
 	}
 
 	/* create window */
-	hwnd = CreateWindowEx(
-		WS_EX_CLIENTEDGE,
+	hwnd = CreateWindow(
 		g_szClassName,
 		"Hello",
 		WS_OVERLAPPEDWINDOW,
@@ -93,7 +90,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		50,
 		hwnd,
 		NULL,
-		(HINSTANCE)GetWindowLongPtr(hwnd, GWLP_HINSTANCE),
+		hInstance,
 		NULL
 	);
 
