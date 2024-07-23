@@ -2,3 +2,6 @@ untracked/
 *.exe
 *.o
 *.obj
+/**/main
+*.err
+*.rex
