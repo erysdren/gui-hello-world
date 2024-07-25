@@ -180,27 +180,32 @@ typedef struct GEMBLK {
 } GEMBLK;
 
 /* static GEM arrays and structures */
-GEMBLK gb;
 UWORD control[C_SIZE];
 UWORD global[G_SIZE];
 UWORD int_in[I_SIZE];
 UWORD int_out[O_SIZE];
-LONG addr_in[AI_SIZE];
-LONG addr_out[AO_SIZE];
+void FAR *addr_in[AI_SIZE];
+void FAR *addr_out[AO_SIZE];
+
+GEMBLK gb = {
+	&control,
+	&global,
+	&int_in,
+	&int_out,
+	&addr_in,
+	&addr_out
+};
 
 WORD gem(WORD opcode)
 {
 	union REGS r;
 	struct SREGS s;
 	WORD i;
-	BYTE *pctrl;
 
 	control[0] = opcode;
 
-	pctrl = &ctrl_cnts[(opcode - 10) * 3];
-
-	for (i = 1; i <= CTRL_CNT; i++)
-		control[i] = *pctrl++;
+	for (i = 0; i < CTRL_CNT; i++)
+		control[i + 1] = ctrl_cnts[((opcode - 10) * 3) + i];
 
 	segread(&s);
 
@@ -215,13 +220,6 @@ WORD gem(WORD opcode)
 
 WORD appl_init(void)
 {
-	gb.gb_pcontrol = &control;
-	gb.gb_pglobal = &global;
-	gb.gb_pintin = &int_in;
-	gb.gb_pintout = &int_out;
-	gb.gb_padrin = &addr_in;
-	gb.gb_padrout = &addr_out;
-
 	return gem(APPL_INIT);
 }
 
@@ -233,6 +231,6 @@ WORD appl_exit(void)
 WORD form_alert(WORD defbut, void FAR *astring)
 {
 	FM_DEFBUT = defbut;
-	FM_ASTRING = (LONG)astring;
+	FM_ASTRING = astring;
 	return gem(FORM_ALERT);
 }
