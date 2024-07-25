@@ -227,7 +227,7 @@ WORD appl_init(void)
 
 WORD appl_exit(void)
 {
-	return gem(APPL_INIT);
+	return gem(APPL_EXIT);
 }
 
 WORD form_alert(WORD defbut, void FAR *astring)
