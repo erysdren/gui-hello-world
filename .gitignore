@@ -5,3 +5,5 @@ untracked/
 /**/main
 *.err
 *.rex
+*.rsp
+*.app
