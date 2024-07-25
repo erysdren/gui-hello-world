@@ -17,8 +17,17 @@ const char alert[] = "[1][Hello World!][ Ok ]";
 
 int main(int argc, char **argv)
 {
+	/* check for GEM */
+	if (_dos_getvect(0xEF) == NULL)
+	{
+		printf("GEMAES is not present in memory.\n");
+		return 1;
+	}
+
+	/* run GEM program */
 	appl_init();
 	form_alert(1, alert);
 	appl_exit();
+
 	return 0;
 }
