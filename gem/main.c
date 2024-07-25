@@ -7,6 +7,8 @@
 #include <stdint.h>
 #include <string.h>
 
+#include <dos.h>
+
 #include "gem.h"
 
 WORD appl_init(void);
