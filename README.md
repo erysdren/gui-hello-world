@@ -5,5 +5,5 @@ Naive implementations of "Hello World" in various GUI toolkits.
 |   |   |   |
 |---|---|---|
 | [![](.github/gtk4.png) <br> **GTK4**](./gtk4/) | [![](.github/haiku.png) <br> **Haiku/BeAPI**](./haiku/) | [![](.github/motif.png) <br> **X11/Motif**](./motif/) |
-| [![](.github/tvision.png) <br> **Borland TurboVision**](./tvision/) | [![](.github/win32-win386.png) <br> **Win32 (Windows 3.11)**](./win32/) | [![](.github/win32-wine.png) <br> **Win32 (Wine)**](./win32/) |
+| [![](.github/tvision.png) <br> **Borland TurboVision**](./tvision/) | [![](.github/winapi-win386.png) <br> **WinAPI (Windows 3.11)**](./winapi/) | [![](.github/winapi-wine.png) <br> **WinAPI (Wine)**](./winapi/) |
 | [![](.github/gem.png) <br> **Digital Research GEM**](./gem/) | | |
